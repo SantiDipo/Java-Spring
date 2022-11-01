@@ -9,14 +9,16 @@ import com.eggNews.egg.entidades.Noticia;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
+import org.springframework.stereotype.Repository;
 
 /**
  *
  * @author Santiago D'Ippolito
  */
+@Repository
 public interface NoticiaRepositorio extends JpaRepository<Noticia, Long>{
     
-    @Query("SELECT n FROM NOTICIA n WHERE n.titulo=:titulo")
-    public Noticia consultar(@Param("titulo") String titulo);  
+//    @Query("SELECT n FROM NOTICIA n WHERE n.titulo=:titulo")
+//    public Noticia consultar(@Param("titulo") String titulo);  
     }
 

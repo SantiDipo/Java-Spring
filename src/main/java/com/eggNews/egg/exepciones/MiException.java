@@ -5,6 +5,7 @@
  */
 package com.eggNews.egg.exepciones;
 
+
 /**
  *
  * @author Santiago D'Ippolito
