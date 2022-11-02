@@ -66,6 +66,10 @@ public class ServicioNoticia {
         Noticia noticia = noticiarepositorio.getById(id);
         noticiarepositorio.delete(noticia);
     }
+    
+    public Noticia getOne(Long id){
+        return noticiarepositorio.getOne(id);
+    }
 
     public void validar(Long id, String titulo, String cuerpo) throws MiException {
         if (id == null) {
@@ -83,3 +87,4 @@ public class ServicioNoticia {
     }
     
 }
+ 
