@@ -5,6 +5,7 @@
  */
 package com.eggNews.egg.servicios;
 
+import com.eggNews.egg.entidades.Imagen;
 import com.eggNews.egg.entidades.Noticia;
 import com.eggNews.egg.exepciones.MiException;
 import com.eggNews.egg.repositorios.NoticiaRepositorio;
@@ -81,9 +82,13 @@ public class ServicioNoticia {
         if (cuerpo == null || cuerpo.isEmpty()) {
             throw new MiException("El cuerpo no debe ser nulo o estar vacio");
         }
-//        if (foto.isError() || foto == null) {
+//        if (foto == null) {
 //            throw new MiException("Su imagen esta nula o no es compatible o posee un error");
 //        }
+    }
+     public Optional<Noticia> listarNoticiaPorId(Long id) {
+        Optional<Noticia> noticia = noticiarepositorio.findById(id);
+        return noticia;
     }
     
 }

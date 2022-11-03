@@ -5,12 +5,11 @@
  */
 package com.eggNews.egg.controladores;
 
+import com.eggNews.egg.entidades.Imagen;
 import com.eggNews.egg.entidades.Noticia;
 import com.eggNews.egg.exepciones.MiException;
 import com.eggNews.egg.servicios.ServicioNoticia;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -32,7 +31,9 @@ public class ControladorNoticia {
     protected ServicioNoticia servicioNoticia;
 
     @GetMapping("/inicio")
-    public String index() {
+    public String listarIndex(ModelMap modelo) {
+       List<Noticia> noticias = servicioNoticia.listarNoticia();
+       modelo.addAttribute("noticias", noticias);
         return "index.html";
     }
 
@@ -47,6 +48,9 @@ public class ControladorNoticia {
        modelo.addAttribute("noticias", noticias);
         return "listarNoticia.html";
     }
+    
+   
+    
 
     @PostMapping("/registro")
     public String registro(@RequestParam(required = false) Long id, String titulo, String cuerpo) throws MiException {

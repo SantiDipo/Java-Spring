@@ -7,7 +7,7 @@ package com.eggNews.egg.entidades;
 
 
 
-import javafx.scene.image.Image;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -27,7 +27,7 @@ public class Noticia {
     private Long id;
     private String titulo;
     private String cuerpo;
-//    private Image foto; 
+//    private Imagen foto; 
 
     public Noticia() {
     }
@@ -44,7 +44,7 @@ public class Noticia {
         this.cuerpo = cuerpo;
     }
 
-//    public void setFoto(Image foto) {
+//    public void setFoto(Imagen foto) {
 //        this.foto = foto;
 //    }
 
@@ -60,9 +60,9 @@ public class Noticia {
         return cuerpo;
     }
 
-//    public Image getFoto() {
+//    public Imagen getFoto() {
 //        return foto;
 //    }
-//    
+    
     
 }
