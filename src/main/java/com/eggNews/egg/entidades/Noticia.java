@@ -12,6 +12,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 
 
@@ -27,8 +28,9 @@ public class Noticia {
     private Long id;
     private String titulo;
     private String cuerpo;
-//    private Imagen foto; 
-
+    @ManyToOne
+    private Periodista creador;
+    
     public Noticia() {
     }
 
@@ -44,10 +46,6 @@ public class Noticia {
         this.cuerpo = cuerpo;
     }
 
-//    public void setFoto(Imagen foto) {
-//        this.foto = foto;
-//    }
-
     public Long getId() {
         return id;
     }
@@ -60,9 +58,12 @@ public class Noticia {
         return cuerpo;
     }
 
-//    public Imagen getFoto() {
-//        return foto;
-//    }
-    
+    public Periodista getCreador() {
+        return creador;
+    }
+
+    public void setCreador(Periodista creador) {
+        this.creador = creador;
+    }
     
 }

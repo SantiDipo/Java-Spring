@@ -10,6 +10,7 @@ import com.eggNews.egg.entidades.Noticia;
 import com.eggNews.egg.exepciones.MiException;
 import com.eggNews.egg.servicios.ServicioNoticia;
 import java.util.List;
+import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -24,16 +25,16 @@ import org.springframework.web.bind.annotation.RequestParam;
  * @author Santiago D'Ippolito
  */
 @Controller
-@RequestMapping("/")
+@RequestMapping("/noticia")
 public class ControladorNoticia {
-
+   
     @Autowired
     protected ServicioNoticia servicioNoticia;
 
     @GetMapping("/inicio")
     public String listarIndex(ModelMap modelo) {
-       List<Noticia> noticias = servicioNoticia.listarNoticia();
-       modelo.addAttribute("noticias", noticias);
+        List<Noticia> noticias = servicioNoticia.listarNoticia();
+        modelo.addAttribute("noticias", noticias);
         return "index.html";
     }
 
@@ -44,13 +45,17 @@ public class ControladorNoticia {
 
     @GetMapping("/listar")
     public String listar(ModelMap modelo) {
-       List<Noticia> noticias = servicioNoticia.listarNoticia();
-       modelo.addAttribute("noticias", noticias);
+        List<Noticia> noticias = servicioNoticia.listarNoticia();
+        modelo.addAttribute("noticias", noticias);
         return "listarNoticia.html";
     }
-    
-   
-    
+
+    @GetMapping("/verNoticia")
+    public String listar(ModelMap modelo, Long id) {
+        Optional<Noticia> noticia = servicioNoticia.listarNoticiaPorId(id);
+        modelo.addAttribute("noticia", noticia);
+        return "listarNoticia.html";
+    }
 
     @PostMapping("/registro")
     public String registro(@RequestParam(required = false) Long id, String titulo, String cuerpo) throws MiException {
@@ -63,9 +68,9 @@ public class ControladorNoticia {
         modelo.put("noticia", servicioNoticia.getOne(id));
         return "modificarNoticia.html";
     }
-    
+
     @PostMapping("/modificar/{id}")
-    public String modificarN(@PathVariable Long id, String titulo, String cuerpo, ModelMap modelo){
+    public String modificarN(@PathVariable Long id, String titulo, String cuerpo, ModelMap modelo) {
         try {
             servicioNoticia.modificarNoticia(id, titulo, cuerpo);
             return "redirect:../listar";
@@ -73,13 +78,12 @@ public class ControladorNoticia {
             modelo.put("error", ex.getMessage());
             return "modificarNoticia.html";
         }
-        
-     }   
-    @GetMapping("/eliminar/{id}")
-    public String eliminar(@PathVariable Long id, ModelMap modelo){
-            servicioNoticia.darDeBajaNoticia(id);
-            return "redirect:../listar";
-     }   
+
     }
 
- 
+    @GetMapping("/eliminar/{id}")
+    public String eliminar(@PathVariable Long id, ModelMap modelo) {
+        servicioNoticia.darDeBajaNoticia(id);
+        return "redirect:../listar";
+    }
+}
