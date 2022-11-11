@@ -29,7 +29,7 @@ public class Usuario {
    
    protected String nombreUsuario;
    protected String password;
-   @Temporal(value = TemporalType.DATE)
+   @Temporal(value = TemporalType.TIMESTAMP)
    protected Date alta ;
    
    @Enumerated(EnumType.STRING)

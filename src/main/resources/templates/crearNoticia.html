@@ -12,7 +12,7 @@ and open the template in the editor.
               integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" 
               crossorigin="anonymous">
     </head>
-   <body style="background-image: url(https://eggeducacion.com/static/cc3031052f3a49f336909dc63e19acef/6050d/dual_block_aula_latam.png);">
+    <body style="background-image: url(https://eggeducacion.com/static/cc3031052f3a49f336909dc63e19acef/6050d/dual_block_aula_latam.png);">
         <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-
                 DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
         crossorigin="anonymous"></script>
@@ -20,7 +20,7 @@ and open the template in the editor.
                 integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx"
         crossorigin="anonymous"></script>
         <ul class="nav nav-pills">
-              <li class="nav-item">
+            <li class="nav-item">
                 <a class="nav-link active" href="/noticia/inicio">Inicio</a>
             </li>
             <li class="nav-item">
@@ -32,7 +32,7 @@ and open the template in the editor.
             </li>
         </ul>
         <h1>Ingrese su noticia aqui</h1>
-        <form action="/noticia/registro" method="post">
+        <form th:action="@{/noticia/registro}" method="post">
             <label>Titulo de la noticia</label><br>
             <input type="text" name="titulo"><br>
             <label>Ingrese el cuerpo</label><br>
