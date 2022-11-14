@@ -12,6 +12,7 @@ import com.eggNews.egg.servicios.ServicioNoticia;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -30,7 +31,8 @@ public class ControladorNoticia {
    
     @Autowired
     protected ServicioNoticia servicioNoticia;
-
+    
+    @PreAuthorize("hasAnyRole('ROLE_USUARIO', 'ROLE_PERIODISTA', 'ROLE_ADMINISTRADOR')")
     @GetMapping("/inicio")
     public String listarIndex(ModelMap modelo) {
         List<Noticia> noticias = servicioNoticia.listarNoticia();

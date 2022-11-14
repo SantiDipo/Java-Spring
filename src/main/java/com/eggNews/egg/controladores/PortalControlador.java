@@ -11,6 +11,7 @@ import com.eggNews.egg.servicios.UsuarioServicio;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -35,7 +36,10 @@ public class PortalControlador {
     }
     
     @GetMapping("/login")
-    public String login(){
+    public String login(@RequestParam(required = false) String error, ModelMap modelo){
+        if (error != null) {
+            modelo.put("error", "Usuario o contraseña invalidos!");
+        }
         return "login.html";
     }
     
@@ -46,7 +50,7 @@ public class PortalControlador {
     @PostMapping("/registro")
     public String registro(@RequestParam String nombreUsuario,@RequestParam  String password,@RequestParam  String password2, ModelMap modelo,String alta) throws MiException{
         try {
-            SimpleDateFormat fecha = new SimpleDateFormat("yyyy-mm-dd");
+            SimpleDateFormat fecha = new SimpleDateFormat("yyyy-MM-dd");
             Date fechaFinal = fecha.parse(alta);
             usuarioServicio.registrar(nombreUsuario, password, password2, fechaFinal, Rol.USUARIO, true);
             modelo.put("Exito!", "Usuario registrado correcatamente");
