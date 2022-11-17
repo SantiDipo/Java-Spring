@@ -7,10 +7,12 @@ package com.eggNews.egg.controladores;
 
 import com.eggNews.egg.entidades.Imagen;
 import com.eggNews.egg.entidades.Noticia;
+import com.eggNews.egg.entidades.Usuario;
 import com.eggNews.egg.exepciones.MiException;
 import com.eggNews.egg.servicios.ServicioNoticia;
 import java.util.List;
 import java.util.Optional;
+import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
@@ -34,7 +36,16 @@ public class ControladorNoticia {
     
     @PreAuthorize("hasAnyRole('ROLE_USUARIO', 'ROLE_PERIODISTA', 'ROLE_ADMINISTRADOR')")
     @GetMapping("/inicio")
-    public String listarIndex(ModelMap modelo) {
+    public String listarIndex(ModelMap modelo, HttpSession session) {
+        
+        Usuario logueado = (Usuario) session.getAttribute("usuariosession");
+        if(logueado.getRol().toString().equals("ADMINISTRADOR")){
+            return "redirect:/admin/dashboard";
+        }
+         if(logueado.getRol().toString().equals("PERIODISTA")){
+            return "redirect:/periodista/dashboard";
+         }
+        
         List<Noticia> noticias = servicioNoticia.listarNoticia();
         modelo.addAttribute("noticias", noticias);
         return "index.html";

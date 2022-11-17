@@ -12,6 +12,7 @@ import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import org.hibernate.annotations.GenericGenerator;
@@ -37,6 +38,9 @@ public class Usuario {
    
    protected boolean activo;
 
+   @OneToOne
+   private Imagen imagen;
+   
     public Usuario(String id, String nombreUsuario, String password, Date alta, Rol rol, boolean activo) {
         this.id = id;
         this.nombreUsuario = nombreUsuario;
@@ -44,6 +48,14 @@ public class Usuario {
         this.alta = alta;
         this.rol = rol;
         this.activo = activo;
+    }
+
+    public Imagen getImagen() {
+        return imagen;
+    }
+
+    public void setImagen(Imagen imagen) {
+        this.imagen = imagen;
     }
 
     public Usuario() {

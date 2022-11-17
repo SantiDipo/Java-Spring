@@ -4,19 +4,9 @@ To change this license header, choose License Headers in Project Properties.
 To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
-<html xmls:th="https://www.thymeleaf.org/">
-    <head>
-        <title>TODO supply a title</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" 
-              integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" 
-              crossorigin="anonymous">
-        <link rel="stylesheet" href="/css/index.css">
-        <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-        <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-        <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    </head>
+<html xmls:th="https://www.thymeleaf.org/" xmls:sec="https://www.thymeleaf.org/extra/spring-security">
+    <head th:replace="/fragments/head :: head"</head>
+    <nav th:replace="/fragments/navbar :: nav"></nav>
     <body>
         <div id="login">
             <h3 class="text-center text-white pt-5">Ingreso</h3>
@@ -25,21 +15,21 @@ and open the template in the editor.
                     <div id="login-column" class="col-md-6">
                         <div id="login-box" class="col-md-12">
                             <form id="login-form" class="form" th:action="@{/logincheck}" method="post">
-                                <h3 class="text-center text-info">Ingrese aqui !</h3>
+                                <h3 class="text-center text-warning">Ingrese aqui !</h3>
                                 <div class="form-group">
-                                    <label for="nombreUsuario" class="text-info">Nombre de usuario:</label><br>
+                                    <label for="nombreUsuario" class="text-black">Nombre de usuario:</label><br>
                                     <input type="text" name="nombreUsuario" id="nombreUsuario" class="form-control" th:value ="${nombreUsuario}">
                                 </div>
                                 <div class="form-group">
-                                    <label for="password" class="text-info">Contraseña:</label><br>
-                                    <input type="text" name="password" id="password" class="form-control" th:value =" ${password}">
+                                    <label for="password" class="text-black">Contraseña:</label><br>
+                                    <input type="password" name="password" id="password" class="form-control" th:value =" ${password}">
                                 </div>
                                 <div class="form-group">
-                                    <label for="remember-me" class="text-info"><span>Recuérdame</span> <span><input id="remember-me" name="remember-me" type="checkbox"></span></label><br>
-                                    <input type="submit" name="submit" class="btn btn-info btn-md" value="Iniciar sesión">
+                                    <label for="remember-me" class="text-black"><span>Recuérdame</span> <span><input id="remember-me" name="remember-me" type="checkbox"></span></label><br>
+                                    <input type="submit" name="submit" class="btn btn-warning btn-md" value="Iniciar sesión">
                                 </div>
                                 <div id="register-link" class="text-right">
-                                    <a th:href="@{/registrar}" class="text-info">Registrece aqui</a>
+                                    <a th:href="@{/registrar}" class="text-black">Registrece aqui</a>
                                 </div>
                             </form>
                         </div>
