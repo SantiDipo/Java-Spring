@@ -14,7 +14,7 @@ and open the template in the editor.
                 <div id="login-row" class="row justify-content-center align-items-center">
                     <div id="login-column" class="col-md-6">
                         <div id="login-box" class="col-md-12">
-                            <form id="login-form" class="form" th:action="@{/registro}" method="post">
+                            <form id="login-form" class="form" th:action="@{/registro}" method="post" enctype="multipart/form-data">
                                 <h3 class="text-center text-warning">Registrece aqui!</h3>
                                 <div class="form-group">
                                     <label for="nombreUsuario" class="text-black">Nombre de usuario:</label><br>
@@ -34,9 +34,20 @@ and open the template in the editor.
                                            min="2022-11-10" max="2099-12-31"
                                            th:value ="${alta}" class="form-control">
                                 </div>
+                                <div>
+                                    <label for="archivo" class="text-black">Imagen de perfil:</label><br>
+                                    <input type="file" name="archivo" id="archivo" class="form-control">
+                                </div>
                                 <div class="form-group">
                                     <input type="submit" name="submit" class="btn btn-warning btn-md" value="Registrarme"><br>
                                 </div>
+                                <section class=" text-center container">
+                                    <div class="row mt-3">
+                                        <div class="divVolver">
+                                            <a th:href="@{/}" class="btn btn-secondary my-2 botonVolver botones">Volver</a><br>
+                                        </div>
+                                    </div>
+                                </section>
                             </form>
                         </div>
                     </div>

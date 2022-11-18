@@ -41,7 +41,7 @@ public class Usuario {
    @OneToOne
    private Imagen imagen;
    
-    public Usuario(String id, String nombreUsuario, String password, Date alta, Rol rol, boolean activo) {
+    public Usuario(String id, String nombreUsuario, String password, Date alta, Rol rol, boolean activo,Imagen imagen) {
         this.id = id;
         this.nombreUsuario = nombreUsuario;
         this.password = password;

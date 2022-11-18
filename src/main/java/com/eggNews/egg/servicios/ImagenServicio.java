@@ -19,33 +19,35 @@ import org.springframework.web.multipart.MultipartFile;
  */
 @Service
 public class ImagenServicio {
+
     @Autowired
     private ImagenRepositorio imagenrepositorio;
-    
-    public Imagen guardarImagen(MultipartFile archivo) throws MiException{
-    
-        if(archivo!=null){
+
+    public Imagen guardarImagen(MultipartFile archivo) throws MiException {
+
+        if (archivo != null) {
             try {
                 Imagen imagen = new Imagen();
                 imagen.setMime(archivo.getContentType());
                 imagen.setNombre(archivo.getName());
                 imagen.setContenido(archivo.getBytes());
-                imagenrepositorio.save(imagen);
+                return imagenrepositorio.save(imagen);
             } catch (Exception e) {
                 System.err.println(e.getMessage());
             }
         }
         return null;
-}
-     public Imagen actualizarImagen(MultipartFile archivo, String idImagen) throws MiException{
-    
-        if(archivo!=null){
+    }
+
+    public Imagen actualizarImagen(MultipartFile archivo, String idImagen) throws MiException {
+
+        if (archivo != null) {
             try {
                 Imagen imagen = new Imagen();
-                if(idImagen!=null){
-                    Optional<Imagen>respuesta=imagenrepositorio.findById(idImagen);
-                    if(respuesta.isPresent()){
-                        imagen=respuesta.get();
+                if (idImagen != null) {
+                    Optional<Imagen> respuesta = imagenrepositorio.findById(idImagen);
+                    if (respuesta.isPresent()) {
+                        imagen = respuesta.get();
                     }
                 }
                 imagen.setMime(archivo.getContentType());
@@ -57,5 +59,5 @@ public class ImagenServicio {
             }
         }
         return null;
-}
+    }
 }

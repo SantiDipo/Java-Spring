@@ -16,8 +16,8 @@ import javax.persistence.Entity;
 @Entity
 public class Administrador extends Usuario{
 
-    public Administrador(String id, String nombreUsuario, String password, Date alta, Rol rol, boolean activo) {
-        super(id, nombreUsuario, password, alta, rol, activo);
+    public Administrador(String id, String nombreUsuario, String password, Date alta, Rol rol, boolean activo, Imagen imagen) {
+        super(id, nombreUsuario, password, alta, rol, activo, imagen);
     }
     
 }

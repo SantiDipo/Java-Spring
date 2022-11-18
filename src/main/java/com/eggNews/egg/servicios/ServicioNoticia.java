@@ -16,6 +16,7 @@ import javafx.scene.image.Image;
 import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 /**
  *
@@ -25,10 +26,12 @@ import org.springframework.stereotype.Service;
 public class ServicioNoticia {
 
     @Autowired
-    NoticiaRepositorio noticiarepositorio;
+    private NoticiaRepositorio noticiarepositorio;
+    @Autowired
+    private ImagenServicio imagenservicio;
 
     @Transactional
-    public void crearNoticia(Long id, String titulo, String cuerpo) throws MiException {
+    public void crearNoticia(MultipartFile archivo, Long id, String titulo, String cuerpo) throws MiException {
 
         validar(id, titulo, cuerpo);
         Noticia noticia = new Noticia();
@@ -36,8 +39,8 @@ public class ServicioNoticia {
         noticia.setId(id);
         noticia.setCuerpo(cuerpo);
         noticia.setTitulo(titulo);
-//        noticia.setFoto(foto);
-
+        Imagen imagen = imagenservicio.guardarImagen(archivo);
+        noticia.setImagen(imagen);
         noticiarepositorio.save(noticia);
     }
 
@@ -46,10 +49,10 @@ public class ServicioNoticia {
         noticia = noticiarepositorio.findAll();
         return noticia;
     }
-    
+
     @Transactional
-    public void modificarNoticia(Long id, String titulo, String cuerpo) throws MiException {
-        
+    public void modificarNoticia(MultipartFile archivo, Long id, String titulo, String cuerpo) throws MiException {
+
         validar(id, titulo, cuerpo);
         Optional<Noticia> respuesta = noticiarepositorio.findById(id);
 
@@ -58,17 +61,23 @@ public class ServicioNoticia {
             noticia.setId(id);
             noticia.setCuerpo(cuerpo);
             noticia.setTitulo(titulo);
-//            noticia.setFoto(foto);
+            String idImagen = null;
+            if (noticia.getImagen() != null) {
+                idImagen = noticia.getImagen().getId();
+            }
+            Imagen imagen = imagenservicio.actualizarImagen(archivo, idImagen);
+            noticia.setImagen(imagen);
             noticiarepositorio.save(noticia);
         }
     }
+
     @Transactional
-    public void darDeBajaNoticia(Long id){
+    public void darDeBajaNoticia(Long id) {
         Noticia noticia = noticiarepositorio.getById(id);
         noticiarepositorio.delete(noticia);
     }
-    
-    public Noticia getOne(Long id){
+
+    public Noticia getOne(Long id) {
         return noticiarepositorio.getOne(id);
     }
 
@@ -82,14 +91,11 @@ public class ServicioNoticia {
         if (cuerpo == null || cuerpo.isEmpty()) {
             throw new MiException("El cuerpo no debe ser nulo o estar vacio");
         }
-//        if (foto == null) {
-//            throw new MiException("Su imagen esta nula o no es compatible o posee un error");
-//        }
     }
-     public Optional<Noticia> listarNoticiaPorId(Long id) {
+
+    public Optional<Noticia> listarNoticiaPorId(Long id) {
         Optional<Noticia> noticia = noticiarepositorio.findById(id);
         return noticia;
     }
-    
+
 }
- 

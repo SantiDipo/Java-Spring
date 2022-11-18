@@ -1,43 +1,54 @@
 
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
 
-        <a class="navbar-brand" href="#">
-            <img src="https://s3.amazonaws.com/tracxn-data-image/logo/company/eggeducacion.com_Logo_3d8b4eb5-9d35-450c-a6f5-a2e9af18686d.jpg" width="30" height="30" class="d-inline-block align-top" alt="logo egg" loading="lazy">
-            EGG NEWS
-        </a>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
-                    <a class="nav-link active" th:if="${session.usuariosession != null}" href="/noticia/inicio">Inicio</a>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" th:if="${session.usuariosession != null}" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Noticia
-                    </a>
-                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                        <li><a sec:authorize ="hasRole('ADMINISTRADOR')" class="dropdown-item" th:href="@{/noticia/crear}">Crear noticia</a></li>
-                        <li><a sec:authorize ="hasRole('PERIODISTA')" class="dropdown-item" th:href="@{/noticia/crear}">Crear noticia</a></li>
-                        <li><a class="dropdown-item" href="/noticia/listar">Ver Noticias</a></li>
-                    </ul>
-                    </div>
-                </li>    
-                <li class="navbar-brand">    
-                    <a class="nav-link" th:if="${session.usuariosession != null}" href="/logout">Cerrar sesión</a>
-                </li>
-
-
-                <li class="navbar-brand">
-                    <a class="nav-link " th:if="${session.usuariosession == null}" href="/registrar"  role="button" aria-expanded="false">
-                        Registrate!
-                    </a>
-
-                </li>
-
-                <li class="navbar-brand">
-                    <a class="nav-link " th:if="${session.usuariosession == null}" href="/login"  role="button" aria-expanded="false">
-                        LOGIN!
-                    </a>
-            </ul>
+    <a class="navbar-brand" href="#">
+        <img src="https://s3.amazonaws.com/tracxn-data-image/logo/company/eggeducacion.com_Logo_3d8b4eb5-9d35-450c-a6f5-a2e9af18686d.jpg" width="30" height="30" class="d-inline-block align-top" alt="logo egg" loading="lazy">
+        EGG NEWS
+    </a>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link active" th:if="${session.usuariosession != null}" href="/noticia/inicio">Inicio</a>
             </li>
-    </nav>
-   
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" th:if="${session.usuariosession != null}" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Noticia
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                    <li><a sec:authorize ="hasRole('ADMINISTRADOR')" class="dropdown-item" th:href="@{/noticia/crear}">Crear noticia</a></li>
+                    <li><a sec:authorize ="hasRole('PERIODISTA')" class="dropdown-item" th:href="@{/noticia/crear}">Crear noticia</a></li>
+                    <li><a class="dropdown-item" href="/noticia/listar">Ver Noticias</a></li>
+                </ul>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" th:if="${session.usuariosession != null}" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Perfil
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                    <li><a class="dropdown-item" th:href="@{/perfil/}">Editar Perfil</a></li>
+                </ul>
+                </div>
+            </li>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+            </ul>
+            <li><a sec:authorize ="hasRole('ADMINISTRADOR')" class="dropdown-item" th:href="@{/noticia/crear}">Crear noticia</a></li>   
+            <li class="navbar-brand">    
+                <a class="nav-link" th:if="${session.usuariosession != null}" href="/logout">Cerrar sesión</a>
+            </li>
+
+
+            <li class="navbar-brand">
+                <a class="nav-link " th:if="${session.usuariosession == null}" href="/registrar"  role="button" aria-expanded="false">
+                    Registrate!
+                </a>
+
+            </li>
+
+            <li class="navbar-brand">
+                <a class="nav-link " th:if="${session.usuariosession == null}" href="/login"  role="button" aria-expanded="false">
+                    LOGIN!
+                </a>
+        </ul>
+        </li>
+</nav>
+

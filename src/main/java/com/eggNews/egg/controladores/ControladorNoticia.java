@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 /**
  *
@@ -71,8 +72,8 @@ public class ControladorNoticia {
     }
 
     @PostMapping("/registro")
-    public String registro(@RequestParam(required = false) Long id, String titulo, String cuerpo) throws MiException {
-        servicioNoticia.crearNoticia(Long.MIN_VALUE, titulo, cuerpo);
+    public String registro( MultipartFile archivo,@RequestParam(required = false) Long id, String titulo, String cuerpo) throws MiException {
+        servicioNoticia.crearNoticia(archivo, id, titulo, cuerpo);
         return "crearNoticia.html";
     }
 
@@ -83,9 +84,9 @@ public class ControladorNoticia {
     }
 
     @PostMapping("/modificar/{id}")
-    public String modificarN(@PathVariable Long id, String titulo, String cuerpo, ModelMap modelo) {
+    public String modificarN(@PathVariable Long id, String titulo, String cuerpo, ModelMap modelo,MultipartFile archivo) {
         try {
-            servicioNoticia.modificarNoticia(id, titulo, cuerpo);
+            servicioNoticia.modificarNoticia(archivo,id, titulo, cuerpo);
             return "redirect:../listar";
         } catch (MiException ex) {
             modelo.put("error", ex.getMessage());

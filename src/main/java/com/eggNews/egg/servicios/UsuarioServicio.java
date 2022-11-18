@@ -38,12 +38,12 @@ public class UsuarioServicio implements UserDetailsService {
 
     @Autowired
     private UsuarioRepositorio usuarioRepositorio;
-    
+
     @Autowired
     private ImagenServicio imagenservicio;
 
     @Transactional
-    public void registrar(MultipartFile archivo,String nombreUsuario, String password, String password2, Date alta, Rol rol, boolean activo) throws MiException {
+    public void registrar(MultipartFile archivo, String nombreUsuario, String password, String password2, Date alta, Rol rol, boolean activo) throws MiException {
 
         validar(nombreUsuario, password, password2);
 
@@ -58,27 +58,32 @@ public class UsuarioServicio implements UserDetailsService {
         usuario.setImagen(imagen);
         usuarioRepositorio.save(usuario);
     }
+
     @Transactional
-    public void actualizar(String idUsuario,MultipartFile archivo,String nombreUsuario, String password,String password2, Date alta, Rol rol, boolean activo) throws MiException {
+    public void actualizar(String id, MultipartFile archivo, String nombreUsuario, String password, String password2, Rol rol, boolean activo) throws MiException {
 
         validar(nombreUsuario, password, password2);
-        Optional<Usuario> respuesta= usuarioRepositorio.findById(idUsuario);
-        if(respuesta.isPresent()){
+        Optional<Usuario> respuesta = usuarioRepositorio.findById(id);
+
+        if (respuesta.isPresent()) {
             Usuario usuario = new Usuario();
 
-        usuario.setNombreUsuario(nombreUsuario);
-        usuario.setPassword(new BCryptPasswordEncoder().encode(password));
-        usuario.setAlta(alta);
-        usuario.setRol(rol.USUARIO);
-        String idImagen = null;
-        if(usuario.getImagen()!=null){
-            idImagen = usuario.getImagen().getId();   
-        }
-        Imagen imagen = imagenservicio.actualizarImagen(archivo, idImagen);
-        usuario.setImagen(imagen);
-        usuarioRepositorio.save(usuario);
+            usuario.setNombreUsuario(nombreUsuario);
+            usuario.setPassword(new BCryptPasswordEncoder().encode(password));
+            usuario.setRol(rol.USUARIO);
+            String idImagen = null;
+            if (usuario.getImagen() != null) {
+                idImagen = usuario.getImagen().getId();
+            }
+            Imagen imagen = imagenservicio.actualizarImagen(archivo, idImagen);
+            usuario.setImagen(imagen);
+            usuarioRepositorio.save(usuario);
         }
 
+    }
+    
+       public Usuario getOne(String id) {
+        return usuarioRepositorio.getOne(id);
     }
 
     public void validar(String nombreUsuario, String password, String password2) throws MiException {
