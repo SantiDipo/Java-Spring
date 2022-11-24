@@ -7,6 +7,7 @@ package com.eggNews.egg.controladores;
 
 import com.eggNews.egg.entidades.Imagen;
 import com.eggNews.egg.entidades.Noticia;
+import com.eggNews.egg.entidades.Periodista;
 import com.eggNews.egg.entidades.Usuario;
 import com.eggNews.egg.exepciones.MiException;
 import com.eggNews.egg.servicios.ServicioNoticia;
@@ -72,8 +73,8 @@ public class ControladorNoticia {
     }
 
     @PostMapping("/registro")
-    public String registro( MultipartFile archivo,@RequestParam(required = false) Long id, String titulo, String cuerpo) throws MiException {
-        servicioNoticia.crearNoticia(archivo, id, titulo, cuerpo);
+    public String registro( MultipartFile archivo,@RequestParam(required = false) Long id, String titulo, String cuerpo,Periodista periodista) throws MiException {
+        servicioNoticia.crearNoticia(archivo, id, titulo, cuerpo, periodista);
         return "crearNoticia.html";
     }
 

@@ -60,8 +60,8 @@ public class PortalControlador {
             modelo.put("Exito!", "Usuario registrado correcatamente");
             return "Indexlogin.html";
         } catch (Exception e) {
-            System.out.println(e.getMessage());
-            modelo.put("Error!", e.getMessage());
+            System.out.println(e.getStackTrace());
+            modelo.put("Error!", e.getStackTrace());
             return "registro.html";
         }
        
@@ -87,7 +87,7 @@ public class PortalControlador {
             return "index.html";
         } catch (MiException ex) {
 
-            modelo.put("error", ex.getMessage());
+            modelo.put("error", ex.getStackTrace());
             modelo.put("nombre", nombreUsuario);
 
             return "usuario_modificar.html";

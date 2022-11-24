@@ -7,12 +7,12 @@ package com.eggNews.egg.servicios;
 
 import com.eggNews.egg.entidades.Imagen;
 import com.eggNews.egg.entidades.Noticia;
+import com.eggNews.egg.entidades.Periodista;
 import com.eggNews.egg.exepciones.MiException;
 import com.eggNews.egg.repositorios.NoticiaRepositorio;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import javafx.scene.image.Image;
 import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -31,7 +31,7 @@ public class ServicioNoticia {
     private ImagenServicio imagenservicio;
 
     @Transactional
-    public void crearNoticia(MultipartFile archivo, Long id, String titulo, String cuerpo) throws MiException {
+    public void crearNoticia(MultipartFile archivo, Long id, String titulo, String cuerpo, Periodista periodista) throws MiException {
 
         validar(id, titulo, cuerpo);
         Noticia noticia = new Noticia();
@@ -41,6 +41,7 @@ public class ServicioNoticia {
         noticia.setTitulo(titulo);
         Imagen imagen = imagenservicio.guardarImagen(archivo);
         noticia.setImagen(imagen);
+        noticia.setCreador(periodista);
         noticiarepositorio.save(noticia);
     }
 

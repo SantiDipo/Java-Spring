@@ -9,7 +9,7 @@ import com.eggNews.egg.enumeraciones.Rol;
 import java.util.ArrayList;
 import java.util.Date;
 import javax.persistence.Entity;
-import org.springframework.web.multipart.MultipartFile;
+
 
 /**
  *

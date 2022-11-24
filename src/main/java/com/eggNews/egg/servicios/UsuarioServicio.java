@@ -54,6 +54,7 @@ public class UsuarioServicio implements UserDetailsService {
         usuario.setPassword(new BCryptPasswordEncoder().encode(password2));
         usuario.setAlta(alta);
         usuario.setRol(rol.USUARIO);
+        usuario.setActivo(true);
         Imagen imagen = imagenservicio.guardarImagen(archivo);
         usuario.setImagen(imagen);
         usuarioRepositorio.save(usuario);
@@ -64,16 +65,16 @@ public class UsuarioServicio implements UserDetailsService {
 
         validar(nombreUsuario, password, password2);
         Optional<Usuario> respuesta = usuarioRepositorio.findById(id);
-
         if (respuesta.isPresent()) {
-            Usuario usuario = new Usuario();
-
+            Usuario usuario = respuesta.get();
             usuario.setNombreUsuario(nombreUsuario);
             usuario.setPassword(new BCryptPasswordEncoder().encode(password));
             usuario.setRol(rol.USUARIO);
             String idImagen = null;
             if (usuario.getImagen() != null) {
+                System.out.println("Entro");
                 idImagen = usuario.getImagen().getId();
+                System.out.println(idImagen);
             }
             Imagen imagen = imagenservicio.actualizarImagen(archivo, idImagen);
             usuario.setImagen(imagen);
@@ -81,8 +82,8 @@ public class UsuarioServicio implements UserDetailsService {
         }
 
     }
-    
-       public Usuario getOne(String id) {
+
+    public Usuario getOne(String id) {
         return usuarioRepositorio.getOne(id);
     }
 
@@ -95,6 +96,43 @@ public class UsuarioServicio implements UserDetailsService {
         }
         if (!password.equals(password2)) {
             throw new MiException("La constraseñas deben ser iguales");
+        }
+    }
+
+    @Transactional
+    public List<Usuario> listarUsuario() {
+        List<Usuario> usuarios = new ArrayList();
+        usuarios = usuarioRepositorio.findAll();
+        return usuarios;
+    }
+
+    @Transactional
+    public void cambiarRol(String id) {
+        Optional<Usuario> respuesta = usuarioRepositorio.findById(id);
+        if (respuesta.isPresent()) {
+            Usuario usuario = respuesta.get();
+
+            if (usuario.getRol().equals(Rol.USUARIO)) {
+                usuario.setRol(Rol.PERIODISTA);
+            } else if (usuario.getRol().equals(Rol.PERIODISTA)) {
+                usuario.setRol(Rol.USUARIO);
+            }
+
+        }
+    }
+
+    @Transactional
+    public void cambiarActivo(String id) {
+        Optional<Usuario> respuesta = usuarioRepositorio.findById(id);
+        if (respuesta.isPresent()) {
+            Usuario usuario = respuesta.get();
+
+            if (usuario.isActivo()) {
+                usuario.setActivo(false);
+            } else {
+                usuario.setActivo(true);
+            }
+
         }
     }
 
