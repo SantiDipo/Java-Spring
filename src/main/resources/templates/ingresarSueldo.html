@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <div id="sueldo">
+            <div class="container">
+                <div id="sueldo-row" class="row justify-content-center align-items-center">
+                    <div id="sueldo-column" class="col-md-6">
+                        <div id="sueldo-box" class="col-md-12">
+                            <form id="sueldo-form" class="form" th:action="@{/sueldo}" method="post" enctype="multipart/form-data">
+                                <h3 class="text-center text-warning">Registrece aqui!</h3>
+                                <div class="form-group">
+                                    <label for="sueldoMensual" class="text-black">Ingresar sueldo mensual:</label><br>
+                                    <input type="text" name="sueldoMensual" id="sueldoMensual" class="form-control" th:value ="${sueldoMensual}">
+                                </div>
+                                <section class=" text-center container">
+                                    <div class="row mt-3">
+                                        <div class="divVolver">
+                                            <a th:href="@{/admin/dashboard}" class="btn btn-secondary my-2 botonVolver botones">Volver</a><br>
+                                        </div>
+                                    </div>
+                                </section>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

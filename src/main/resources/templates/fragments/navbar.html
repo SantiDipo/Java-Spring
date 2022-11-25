@@ -25,14 +25,14 @@
                     Perfil
                 </a>
                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                    <li><a class="dropdown-item" th:href="@{/perfil/}">Editar Perfil</a></li>
-                    <li><a class="dropdown-item" th:href="@{/admin/usuarios}">Modificar Rol</a></li>
+                    <li><a class="dropdown-item" th:href="@{/perfil}">Editar Perfil</a></li>
+                    <li><a sec:authorize ="hasRole('ADMINISTRADOR')" class="dropdown-item" th:href="@{/admin/usuarios}">Modificar Rol</a></li>
+                    <li><a sec:authorize ="hasRole('ADMINISTRADOR')" class="dropdown-item" th:href="@{/periodista/sueldoPeriodista}">Modificar o ingresar salario</a></li>
                 </ul>
                 </div>
             </li>
             <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
             </ul>
-            <li><a sec:authorize ="hasRole('ADMINISTRADOR')" class="dropdown-item" th:href="@{/noticia/crear}">Crear noticia</a></li>   
             <li class="navbar-brand">    
                 <a class="nav-link" th:if="${session.usuariosession != null}" href="/logout">Cerrar sesión</a>
             </li>

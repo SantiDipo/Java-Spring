@@ -51,10 +51,5 @@ public class AdminControlador {
         return "redirect:/admin/usuarios";
     }
     
-//    @GetMapping("/Sueldo/{id}")
-//    public String sueldo(@PathVariable String id){
-//        usuarioservicio.ingresarSueldo(id);
-//        return "redirect:/admin/usuarios";
-//    }
     
 }
