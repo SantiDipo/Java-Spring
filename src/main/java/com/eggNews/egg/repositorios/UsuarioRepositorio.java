@@ -5,10 +5,12 @@
  */
 package com.eggNews.egg.repositorios;
 
+import com.eggNews.egg.entidades.Periodista;
 import com.eggNews.egg.entidades.Usuario;
 import com.eggNews.egg.enumeraciones.Rol;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.NoRepositoryBean;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
@@ -16,10 +18,10 @@ import org.springframework.stereotype.Repository;
  *
  * @author Santiago D'Ippolito
  */
-@Repository
-public interface UsuarioRepositorio extends JpaRepository<Usuario, String>{
+@NoRepositoryBean
+public interface UsuarioRepositorio <T extends Usuario> extends JpaRepository<T, String>{
     
     @Query("SELECT u FROM Usuario u WHERE u.nombreUsuario = :nombreUsuario")
-    public Usuario buscarPorNombre(@Param("nombreUsuario")String nombreUsuario);
+    public T buscarPorNombre(@Param("nombreUsuario")String nombreUsuario);
     
 }

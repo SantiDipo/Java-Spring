@@ -6,7 +6,7 @@ and open the template in the editor.
 -->
 <html xmls:th="https://www.thymeleaf.org/" xmls:sec="https://www.thymeleaf.org/extra/spring-security">
     <head th:replace="/fragments/head :: head"</head>
-    <body style="background-image: url(https://eggeducacion.com/static/888cc2dce8ff9e1b59a608fdfd9d9d72/a6c62/somos_egg_school.jpg);">
+    <body>
         <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-
                 DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
         crossorigin="anonymous"></script>
@@ -16,7 +16,8 @@ and open the template in the editor.
 
         <nav th:replace="/fragments/navbar :: nav"></nav>
         
-    <div>
+    <div class="container">
+        <img src="https://eggeducacion.com/static/888cc2dce8ff9e1b59a608fdfd9d9d72/a6c62/somos_egg_school.jpg">
         <table class ="table table-dark">
             <thead>
                 <tr>

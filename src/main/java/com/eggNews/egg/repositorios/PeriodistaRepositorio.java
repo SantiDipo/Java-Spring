@@ -6,7 +6,9 @@
 package com.eggNews.egg.repositorios;
 
 import com.eggNews.egg.entidades.Periodista;
+import com.eggNews.egg.entidades.Usuario;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 /**
@@ -14,6 +16,7 @@ import org.springframework.stereotype.Repository;
  * @author Santiago D'Ippolito
  */
 @Repository
-public interface PeriodistaRepositorio extends JpaRepository<Periodista, String> {
-   
+public interface PeriodistaRepositorio extends UsuarioRepositorio<Usuario> {
+
 }
+

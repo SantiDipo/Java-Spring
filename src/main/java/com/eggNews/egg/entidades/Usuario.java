@@ -7,14 +7,8 @@ package com.eggNews.egg.entidades;
 
 import com.eggNews.egg.enumeraciones.Rol;
 import java.util.Date;
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.OneToOne;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+import javax.persistence.*;
+
 import org.hibernate.annotations.GenericGenerator;
 
 /**

@@ -33,24 +33,18 @@ public class PeriodistaServicio {
     @Transactional
     public void ingresarSueldo(String id, Integer sueldoMensual) {
 
-        Optional<Usuario> respuesta = usuarioRepositorio.findById(id);
+        Optional<Periodista> respuesta = usuarioRepositorio.findById(id);
         if (respuesta.isPresent()) {
-            Periodista periodista = (Periodista) respuesta.get();
+            Periodista periodista = respuesta.get();
             periodista.setSueldoMensual(sueldoMensual);
             periodistaRepositorio.save(periodista);
         }
     }
-    
-      public List<Usuario> listarPorRol(String id) {
-        Optional<Usuario> respuesta = usuarioRepositorio.findById(id);
-        if(respuesta.isPresent()&& respuesta.get().getRol().toString().equals("PERIODISTA")){
-            List<Usuario> periodista = (List<Usuario>) respuesta.get();
-            for (Usuario aux : periodista) {
-                System.out.println(aux);
-            }
-            return periodista;
-        }else{ 
-           return null;   
-        }          
+
+    @Transactional
+    public void guardar(){
+      Periodista periodista= (Periodista) periodistaRepositorio.buscarPorNombre("test");
+        System.out.printf(periodista.getNombreUsuario());
     }
+
 }

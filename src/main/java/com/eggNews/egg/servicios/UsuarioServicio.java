@@ -84,7 +84,7 @@ public class UsuarioServicio implements UserDetailsService {
     }
 
     public Usuario getOne(String id) {
-        return usuarioRepositorio.getOne(id);
+        return (Usuario) usuarioRepositorio.getOne(id);
     }
 
     public void validar(String nombreUsuario, String password, String password2) throws MiException {

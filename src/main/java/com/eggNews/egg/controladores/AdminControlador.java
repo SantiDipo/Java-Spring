@@ -6,6 +6,7 @@
 package com.eggNews.egg.controladores;
 
 import com.eggNews.egg.entidades.Usuario;
+import com.eggNews.egg.servicios.PeriodistaServicio;
 import com.eggNews.egg.servicios.UsuarioServicio;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +26,9 @@ public class AdminControlador {
 
     @Autowired
     private UsuarioServicio usuarioservicio;
+
+    @Autowired
+    private PeriodistaServicio periodisraServicio;
     
     @GetMapping("/dashboard")
     public String panelAdmin() {

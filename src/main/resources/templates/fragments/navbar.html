@@ -27,7 +27,7 @@
                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                     <li><a class="dropdown-item" th:href="@{/perfil}">Editar Perfil</a></li>
                     <li><a sec:authorize ="hasRole('ADMINISTRADOR')" class="dropdown-item" th:href="@{/admin/usuarios}">Modificar Rol</a></li>
-                    <li><a sec:authorize ="hasRole('ADMINISTRADOR')" class="dropdown-item" th:href="@{/periodista/sueldoPeriodista}">Modificar o ingresar salario</a></li>
+                    <li><a sec:authorize ="hasRole('ADMINISTRADOR')" class="dropdown-item" th:href="@{/periodista/ingresar}">Modificar o ingresar salario</a></li>
                 </ul>
                 </div>
             </li>

@@ -21,7 +21,10 @@ public class Periodista extends Usuario {
     private  ArrayList<Noticia> misNoticias;
     private  Integer sueldoMensual;
 
-    public Periodista(ArrayList<Noticia> misNoticias, Integer sueldoMensual, String id, String nombreUsuario, String password, Date alta, Rol rol, boolean activo,Imagen imagen) {
+    public Periodista() {
+    }
+
+    public Periodista(ArrayList<Noticia> misNoticias, Integer sueldoMensual, String id, String nombreUsuario, String password, Date alta, Rol rol, boolean activo, Imagen imagen) {
         super(id, nombreUsuario, password, alta, rol, activo, imagen);
         this.misNoticias = misNoticias;
         this.sueldoMensual = sueldoMensual;
