@@ -5,13 +5,16 @@
  */
 package com.eggNews.egg.controladores;
 
-
+import com.eggNews.egg.entidades.Periodista;
 import com.eggNews.egg.servicios.PeriodistaServicio;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PatchMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 /**
  *
@@ -19,24 +22,28 @@ import org.springframework.web.bind.annotation.RequestMapping;
  */
 @Controller
 @RequestMapping("/periodista")
+//@PreAuthorize("hasAnyRole('ADMINISTRADOR')")
 public class PeriodistaControlador {
 
     @Autowired
     private PeriodistaServicio servicioperiodista;
-    
-    
+
     @GetMapping("/dashboard")
     public String panelAdmin() {
         return "panel.html";
-
     }
+
     @GetMapping("/ingresar")
-    public String ingresarSalario() {
+    public String ingresarSalario(ModelMap modelo) {
+        Periodista periodista = new Periodista();
+        periodista.setId("id prueba");
+        modelo.addAttribute("periodista",periodista);
+        modelo.addAttribute("prueba", "valor de pureba");
         return "ingresarSueldo.html";
     }
 
-    @PatchMapping  ("/sueldo/{id}")
-    public String sueldoMensual(String id, Integer sueldoMensual) {
+    @PostMapping("/sueldo/{id}")
+    public String sueldoMensual(@RequestParam String id,@RequestParam Integer sueldoMensual) {
         servicioperiodista.ingresarSueldo(id, sueldoMensual);
         return "redirect:/admin/dashboard";
     }

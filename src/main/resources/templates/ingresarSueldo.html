@@ -20,8 +20,11 @@ and open the template in the editor.
         <div id="sueldo-row" class="row justify-content-center align-items-center">
             <div id="sueldo-column" class="col-md-6">
                 <div id="sueldo-box" class="col-md-12">
-                    <form id="sueldo-form" class="form" th:action="@{periodista/sueldo/{id}" method="post"
+                    <form id="sueldo-form" class="form" method="post"
                           enctype="multipart/form-data">
+                        <h3 th:text="${prueba}"></h3>
+                        <h3 th:text="${periodista.id}"></h3>
+                        <h3 th:text="${periodista}"></h3>
                         <h3 class="text-center text-warning">Ingrese el sueldo aqui!</h3>
                         <div class="form-group">
                             <label for="sueldoMensual" class="text-black">Ingresar sueldo mensual:</label><br>
@@ -43,3 +46,4 @@ and open the template in the editor.
 </div>
 </body>
 </html>
+<!--th:action="@{'/periodista/sueldo/'+${periodista.id}"-->

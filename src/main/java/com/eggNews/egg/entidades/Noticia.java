@@ -5,9 +5,6 @@
  */
 package com.eggNews.egg.entidades;
 
-
-
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -15,15 +12,13 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
-
-
-
 /**
  *
  * @author Santiago D'Ippolito
  */
 @Entity
 public class Noticia {
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
@@ -33,6 +28,7 @@ public class Noticia {
     private Periodista creador;
     @OneToOne
     private Imagen imagen;
+
     public Noticia() {
     }
 
@@ -43,15 +39,6 @@ public class Noticia {
         this.creador = creador;
         this.imagen = imagen;
     }
-    
-    public Imagen getImagen() {
-        return imagen;
-    }
-
-    public void setImagen(Imagen imagen) {
-        this.imagen = imagen;
-    }
-    
 
     public void setId(Long id) {
         this.id = id;
@@ -84,5 +71,13 @@ public class Noticia {
     public void setCreador(Periodista creador) {
         this.creador = creador;
     }
-    
+
+    public Imagen getImagen() {
+        return imagen;
+    }
+
+    public void setImagen(Imagen imagen) {
+        this.imagen = imagen;
+    }
+
 }

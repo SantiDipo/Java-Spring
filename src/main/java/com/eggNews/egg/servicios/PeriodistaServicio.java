@@ -41,10 +41,10 @@ public class PeriodistaServicio {
         }
     }
 
-    @Transactional
-    public void guardar(){
-      Periodista periodista= (Periodista) periodistaRepositorio.buscarPorNombre("test");
-        System.out.printf(periodista.getNombreUsuario());
-    }
+//    @Transactional
+//    public void guardar(){
+//      Periodista periodista= (Periodista) periodistaRepositorio.buscarPorNombre("test");
+//        System.out.printf(periodista.getNombreUsuario());
+//    }
 
 }

@@ -31,11 +31,11 @@ and open the template in the editor.
                 <td scope="row" th:text="${noticia.titulo}"></td>
                 <td scope="row" th:text="${noticia.cuerpo}"></td>
                 <td>
-                    <a sec:authorize ="hasRole('ADMINISTRADOR')" th:href="@{/modificar/__${noticia.id}__}"> <i class="fas fa-feather-alt"></i>Modificar</a>
-                    <a sec:authorize ="hasRole('PERIODISTA')" th:href="@{/modificar/__${noticia.id}__}"> <i class="fas fa-feather-alt"></i>Modificar</a>
+                    <a sec:authorize ="hasRole('ADMINISTRADOR')" th:href="@{/noticia/modificar/__${noticia.id}__}"> <i class="fas fa-feather-alt"></i>Modificar</a>
+                    <a sec:authorize ="hasRole('PERIODISTA')" th:href="@{/noticia/modificar/__${noticia.id}__}"> <i class="fas fa-feather-alt"></i>Modificar</a>
                 </td>
                 <td>
-                    <a sec:authorize ="hasRole('ADMINISTRADOR')" th:href="@{/eliminar/__${noticia.id}__}"> <i class="fas fa-feather-alt"></i>Eliminar</a>
+                    <a sec:authorize ="hasRole('ADMINISTRADOR')" th:href="@{/noticia/eliminar/__${noticia.id}__}"> <i class="fas fa-feather-alt"></i>Eliminar</a>
                 </td>
                 </tbody>
             </table>

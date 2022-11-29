@@ -74,7 +74,7 @@ public class ControladorNoticia {
 
     @PostMapping("/registro")
     public String registro( MultipartFile archivo,@RequestParam(required = false) Long id, String titulo, String cuerpo,Periodista periodista) throws MiException {
-        servicioNoticia.crearNoticia(archivo, id, titulo, cuerpo, periodista);
+        servicioNoticia.crearNoticia(archivo, id, titulo, cuerpo);
         return "crearNoticia.html";
     }
 

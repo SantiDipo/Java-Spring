@@ -31,7 +31,7 @@ public class ServicioNoticia {
     private ImagenServicio imagenservicio;
 
     @Transactional
-    public void crearNoticia(MultipartFile archivo, Long id, String titulo, String cuerpo, Periodista periodista) throws MiException {
+    public void crearNoticia(MultipartFile archivo, Long id, String titulo, String cuerpo) throws MiException {
 
         validar(id, titulo, cuerpo);
         Noticia noticia = new Noticia();
@@ -41,7 +41,6 @@ public class ServicioNoticia {
         noticia.setTitulo(titulo);
         Imagen imagen = imagenservicio.guardarImagen(archivo);
         noticia.setImagen(imagen);
-        noticia.setCreador(periodista);
         noticiarepositorio.save(noticia);
     }
 
@@ -83,9 +82,9 @@ public class ServicioNoticia {
     }
 
     public void validar(Long id, String titulo, String cuerpo) throws MiException {
-        if (id == null) {
-            throw new MiException("El id no debe ser nulo");
-        }
+//        if (id == null) {
+//            throw new MiException("El id no debe ser nulo");
+//        }
         if (titulo == null || titulo.isEmpty()) {
             throw new MiException("El titulo no debe ser nulo o estar vacio");
         }
